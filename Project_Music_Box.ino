@@ -93,32 +93,31 @@ const float duration_4[]{
   1.0/4,1.0/4,1.0/4,1.0/2,
 };
 
-// const int melody_5[] = {
-//   NOTE_B5,NOTE_B5,NOTE_A5,NOTE_G5,NOTE_F5,NOTE_D5,NOTE_E5,NOTE_F5,
-//   NOTE_F5,NOTE_A5,NOTE_A5,NOTE_G5,NOTE_D5,NOTE_F5,NOTE_F5,NOTE_E5,NOTE_D5,NOTE_E5,NOTE_E5,
-//   NOTE_B5,NOTE_B5,NOTE_A5,NOTE_G5,NOTE_E5,NOTE_C5,NOTE_D5,NOTE_E5,
-//   NOTE_G5,NOTE_A5,NOTE_A5,NOTE_G5,NOTE_E5,NOTE_E5,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,
+const int melody_5[] = {
+  REST, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_B4, NOTE_A4, NOTE_G4, NOTE_A4, NOTE_B4,
+  NOTE_G5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_F5, NOTE_G5, REST,
+  NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_D5, NOTE_C5,
+  NOTE_A4, NOTE_A4, REST, NOTE_A4, NOTE_A4, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_G4, REST, NOTE_G4,
+  NOTE_A4, NOTE_A4, NOTE_A4, NOTE_A4, NOTE_C5, NOTE_B4,
+  NOTE_G5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_F5, NOTE_G5,
+  NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_D5, NOTE_C5,
+  NOTE_A4, NOTE_A4, REST, NOTE_A4, NOTE_A4, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_G4, REST, NOTE_G4, NOTE_G4,
+  NOTE_A4, NOTE_A4, NOTE_A4, REST, NOTE_A4, NOTE_C5, NOTE_B4, NOTE_B4, NOTE_B4, NOTE_B4, NOTE_C5, REST,
+  REST
+};
 
-//   NOTE_B5,NOTE_B5,NOTE_A5,NOTE_G5,NOTE_F5,NOTE_D5,NOTE_E5,NOTE_F5,
-//   NOTE_F5,NOTE_A5,NOTE_A5,NOTE_G5,NOTE_D5,NOTE_F5,NOTE_E5,NOTE_D5,NOTE_E5,
-//   NOTE_B5,NOTE_B5,NOTE_A5,NOTE_G5,NOTE_E5,NOTE_C5,NOTE_D5,NOTE_E5,
-//   NOTE_G5,NOTE_A5,NOTE_A5,NOTE_G5,NOTE_E5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_F5
-
-// };
-
-// const float duration_5[] = {
-//   1.0/4,1.0/16,1.0/8,1.0/16,1.0/4,1.0/16,1.0/16,1.0/8,
-//   3.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/4,
-//   1.0/4,1.0/16,1.0/16,1.0/8,1.0/4,1.0/16,1.0/16,1.0/8,
-//   1.0/8,1.0/8,1.0/16,1.0/8,1.0/16,1.0/8,1.0/8,1.0/8,1.0/16,1.0/8,1.0/16,
-
-//   1.0/4,1.0/16,1.0/16,1.0/8, 1.0/4,1.0/16,1.0/8,1.0/16,
-//   3.0/16,1.0/16,1.0/16,1.0/8,1.0/16,1.0/16,1.0/16,1.0/8,1.0/4,
-
-//   1.0/4,1.0/16,1.0/8,1.0/16,1.0/4,1.0/8,1.0/8,1.0/8,
-//   1.0/8,1.0/8,1.0/16,1.0/8,1.0/16,1.0/8,1.0/8,1.0/4,
-
-// };
+const float duration_5[] = {
+0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.5, 0.5,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.25, 0.125, 0.125,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.125, 0.125, 0.5, 0.125, 0.125,
+0.125, 0.125, 0.25, 0.25, 0.25, 1.0,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 1.0,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.25, 0.125, 0.125,
+0.25, 0.125, 0.125, 0.25, 0.125, 0.125, 0.125, 0.125, 0.25, 0.25, 0.125, 0.125,
+0.125, 0.125, 0.125, 0.125, 0.25, 0.25, 0.125, 0.125, 0.25, 0.25, 0.125, 0.125,
+1.0
+};
 
 const int melody_6[] = {
   REST,NOTE_G4,NOTE_C5,NOTE_D5,
@@ -151,10 +150,10 @@ struct Songs {
   int length;
   int tempo;
 };
-int song = random(3);
-Songs songs[3] = {
+int song = random(4);
+Songs songs[4] = {
   {"Ode de Joy",melody_2, duration_2, sizeof(melody_2)/sizeof(int),1000.0},
-  // {"Love is not easy",melody_3, duration_3, sizeof(melody_3)/sizeof(int),3000.0},
+  {"Memories",melody_5, duration_5, sizeof(melody_5)/sizeof(int),2000.0},
   {"Happy Birthday",melody_4, duration_4, sizeof(melody_4)/sizeof(int),1000.0},
   {"Xiao Jiu Wo",melody_6, duration_6, sizeof(melody_6)/sizeof(int),2000.0},
 };
@@ -188,7 +187,7 @@ void loop()
     delay(pauseBetweenNotes);
     noTone(BUZZER_PIN);
     if (digitalRead(BUTTON_PIN) == HIGH){
-      song = random(3);
+      song = random(4);
       break;
     }
   }
