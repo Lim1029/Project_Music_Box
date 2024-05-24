@@ -24,24 +24,6 @@ const int melody_2[] = {
   NOTE_C5,NOTE_C5,NOTE_D5,NOTE_E5,NOTE_D5,NOTE_C5,NOTE_C5,
 };
 
-// const int melody_3[] = {
-//   NOTE_A4,NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_G5,
-//   NOTE_F5,NOTE_G5,NOTE_A5,NOTE_G5,NOTE_A5,NOTE_C6,
-//   NOTE_A5,NOTE_C6,NOTE_D6,NOTE_C6,NOTE_A5,NOTE_G5,NOTE_A5,REST,
-//   NOTE_B5,NOTE_A5,NOTE_G5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_G5,NOTE_F5,
-//   NOTE_D5,NOTE_E5,NOTE_F5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_E5,
-
-//   NOTE_E4,NOTE_A4,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_G5,
-//   NOTE_F5,NOTE_G5,NOTE_A5,NOTE_G5,NOTE_A5,NOTE_C6,NOTE_A5,NOTE_C6,
-//   NOTE_D6,NOTE_C6,NOTE_A5,NOTE_D6,NOTE_C6,
-
-//   NOTE_A5,NOTE_G5,NOTE_A5,NOTE_A5,NOTE_A5,NOTE_A5,NOTE_A5,NOTE_A5,NOTE_G5,
-//   NOTE_A5,NOTE_G5,NOTE_F5,NOTE_E5,NOTE_F5,REST,
-//   NOTE_E5,NOTE_F5,NOTE_G5,NOTE_B5,NOTE_A5,NOTE_G5,NOTE_F5,NOTE_E5,
-
-//   NOTE_D5,NOTE_E5,NOTE_E5,NOTE_F5,NOTE_C5,NOTE_D5
-// };
-
 const int melody_4[] = {
   NOTE_C4, NOTE_C4, 
   NOTE_D4, NOTE_C4, NOTE_F4,
@@ -54,24 +36,6 @@ const int melody_4[] = {
   NOTE_A4, NOTE_F4, NOTE_G4,
   NOTE_F4  
 };
-
-// const float duration_3[] = {
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,3.0/16,
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,3.0/16,
-//   1.0/16,1.0/16,1.0/8,1.0/16,3.0/16,1.0/8,1.0/4,1.0/8,
-//   1.0/16,1.0/16,1.0/8,1.0/8,1.0/8,1.0/8,1.0/8,1.0/8,1.0/8,
-//   1.0/16,1.0/16,1.0/8,1.0/16,3.0/16,1.0/8,1.0/4,
-
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,3.0/16,
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,3.0/16,1.0/16,1.0/16,
-//   1.0/8,1.0/16,3.0/16,1.0/8,3.0/8,
-
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/8,1.0/16,1.0/16,
-//   1.0/8,1.0/8,1.0/8,1.0/8,1.0/4,1.0/16,
-
-//   1.0/16,1.0/16,1.0/16,1.0/16,1.0/16,1.0/8,1.0/8,1.0/8,
-//   3.0/8,1.0/16,3.0/16,1.0/4,1.0/8,1.0,
-// };
 
 const float duration_2[] = {
   1.0/4,1.0/4,1.0/4,1.0/4,1.0/4,1.0/4,1.0/4,1.0/4,
@@ -150,12 +114,12 @@ struct Songs {
   int length;
   int tempo;
 };
-int song = random(4);
-Songs songs[4] = {
-  {"Ode de Joy",melody_2, duration_2, sizeof(melody_2)/sizeof(int),1000.0},
-  {"Memories",melody_5, duration_5, sizeof(melody_5)/sizeof(int),2000.0},
-  {"Happy Birthday",melody_4, duration_4, sizeof(melody_4)/sizeof(int),1000.0},
-  {"Xiao Jiu Wo",melody_6, duration_6, sizeof(melody_6)/sizeof(int),2000.0},
+int song = random(3);
+Songs songs[3] = {
+  {"Ode de Joy", melody_2, duration_2, sizeof(melody_2)/sizeof(int),1000.0},
+  {"Memories", melody_5, duration_5, sizeof(melody_5)/sizeof(int),1000.0},
+  // {"Happy Birthday", melody_4, duration_4, sizeof(melody_4)/sizeof(int),1000.0},
+  {"Xiao Jiu Wo", melody_6, duration_6, sizeof(melody_6)/sizeof(int),2000.0},
 };
 
 void setup()
@@ -187,9 +151,13 @@ void loop()
     delay(pauseBetweenNotes);
     noTone(BUZZER_PIN);
     if (digitalRead(BUTTON_PIN) == HIGH){
-      song = random(4);
+      int newSong;
+      do {
+        newSong = random(3);
+      } while (newSong == song); // Repeat until new song is different
+      song = newSong;
       lcd.clear();
-      lcd.print('Changing Song');
+      lcd.print("Changing Song");
       delay(500);
       break;
     }
