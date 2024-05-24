@@ -188,6 +188,9 @@ void loop()
     noTone(BUZZER_PIN);
     if (digitalRead(BUTTON_PIN) == HIGH){
       song = random(4);
+      lcd.clear();
+      lcd.print('Changing Song');
+      delay(500);
       break;
     }
   }
